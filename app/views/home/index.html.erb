@@ -1,0 +1,37 @@
+<div class="flex flex-col h-screen items-start"
+    data-controller="voice"
+    data-voice-token-value="<%= @session["client_secret"]['value'] %>"
+>
+  <div class="flex items-center w-full justify-between p-4">
+    <div class="left text-sm">
+      vt
+    </div>
+    <div class="right">
+      <div>
+        <div class="flex items-center gap-2">
+          <div data-voice-target="listening" class="hidden items-center gap-2">
+            <%= heroicon :check, class: 'size-4' %>
+            Listening
+          </div>
+          <%= button_tag data: { action: "voice#startVoice" }, class: "bg-white border border-stone-400 text-stone-600 shadow-sm text-sm py-1 px-2 rounded flex items-center gap-1 hover:bg-stone-100" do %>
+            <%= heroicon 'microphone', class: 'size-4' %>
+            Start Voice
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-voice-target="transcript" class="mx-auto max-w-4xl flex flex-col gap-4 grow overflow-y-auto w-full px-8 items-stretch pb-16">
+    <template data-voice-target="userTranscriptTemplate">
+      <div class="flex items-start justify-end gap-4">
+        <span data-voice-target="transcriptText" class='prose px-4 py-2 bg-stone-100 rounded-lg'>...</span>
+      </div>
+    </template>
+    <template data-voice-target="assistantTranscriptTemplate">
+      <div class="flex items-start gap-4">
+        <div class="shrink-0 mt-1.5 size-4 bg-stone-400 rounded-full"></div>
+        <span data-voice-target="transcriptText" class='prose'></span>
+      </div>
+    </template>
+  </div>
+</div>
