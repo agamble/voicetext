@@ -15,9 +15,33 @@ export default class extends Controller {
     // this.startVoice();
   }
 
+  stopVoice() {
+    if (this.peerConnection) {
+      // Close data channel if it exists
+      if (this.dataChannel) {
+        this.dataChannel.close();
+        this.dataChannel = null;
+      }
+
+      // Close peer connection
+      this.peerConnection.close();
+      this.peerConnection = null;
+
+      // Stop all media tracks
+      if (this.mediaStream) {
+        this.mediaStream.getTracks().forEach(track => track.stop());
+        this.mediaStream = null;
+      }
+
+      // Hide listening indicator
+      this.toggleListening();
+    }
+  }
+
   async startVoice() {
     // Create a peer connection
     const pc = new RTCPeerConnection();
+    this.peerConnection = pc;
 
     // Set up to play remote audio from the model
     const audioEl = document.createElement("audio");
@@ -28,10 +52,12 @@ export default class extends Controller {
     const ms = await navigator.mediaDevices.getUserMedia({
       audio: true
     });
+    this.mediaStream = ms;
     pc.addTrack(ms.getTracks()[0]);
 
     // Set up data channel for sending and receiving events
     const dc = pc.createDataChannel("oai-events");
+    this.dataChannel = dc;
     dc.addEventListener("message", this.handleEvent.bind(this));
 
     // Start the session using the Session Description Protocol (SDP)
@@ -39,7 +65,7 @@ export default class extends Controller {
     await pc.setLocalDescription(offer);
 
     const baseUrl = "https://api.openai.com/v1/realtime";
-    const model = "gpt-4o-mini-realtime-preview-2024-12-17";
+    const model = "gpt-4o-realtime-preview-2024-12-17";
     const sdpResponse = await fetch(`${baseUrl}?model=${model}`, {
       method: "POST",
       body: offer.sdp,

@@ -1,24 +1,26 @@
-# README
+# VoiceText
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+VoiceText is a prototype of a voice-input, text-output AI assistant.
 
-Things you may want to cover:
+## Demo
+<div>
+    <a href="https://www.loom.com/share/84f417447e814894ac6cc589e4949b31">
+      <p>Voicetext - 1 January 2025 - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/84f417447e814894ac6cc589e4949b31">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/84f417447e814894ac6cc589e4949b31-13e52c8bbf2264aa-full-play.gif">
+    </a>
+  </div>
 
-* Ruby version
+## How to run
 
-* System dependencies
+Add your OpenAI API key to the `OPENAI_API_KEY` environment variable. The easiest way to do this is to set it in your `.env` file in the root of the repository.
 
-* Configuration
+Then you can run the server with:
 
-* Database creation
+```
+bundle install
+./bin/dev
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You can then navigate to `http://localhost:3000` in your browser.
