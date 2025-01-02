@@ -11,7 +11,7 @@ class Voice
   end
 
   def create_realtime_session(
-    model: "gpt-4o-mini-realtime-preview-2024-12-17",
+    model: "gpt-4o-realtime-preview-2024-12-17",
     modalities: [ "text" ],
     instructions: "You are a friendly assistant. Reply in english. No need to ask about following up or how you can help further."
   )
