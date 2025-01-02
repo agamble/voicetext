@@ -1,6 +1,19 @@
 # VoiceText
 
-VoiceText is a prototype of a voice-input, text-output AI assistant.
+VoiceText is a demo of a voice-input, text-output AI assistant.
+
+## Motivation
+
+I'm not a super fast typist, so communicating my question to ChatGPT feels slow. I really like the OpenAI [Advanced Voice Mode](https://www.youtube.com/watch?v=Mckd-FhJlp0), but having the model speak its response back to me feels slow too, particularly when the response includes code.
+
+Using my Mac's native transcription for inputs gets some of way there, but it's not seamless:
+
+- I have to click the microphone icon in the ChatGPT interface.
+- I have to wait for the transcription to finish.
+- I have to submit the transcription to ChatGPT.
+- I have to wait for the model to respond.
+
+Removing even these small amounts of friction makes the experience feel much more natural.
 
 ## Demo
 
